@@ -3,6 +3,7 @@ package fantasyoptimizer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,9 +16,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class FantasyOptimizer {
 
-	private static final String m_listBaseUrl = "https://fantasy.hupu.com/api/player/candidates/3263/";
+	private static final String m_listBaseUrl = "https://fantasy.hupu.com/api/player/candidates/";
+	private static final String m_homeUrl = "https://fantasy.hupu.com/api/schedule/normal";
 	private static final String m_detailBaseUrl = "https://fantasy.hupu.com/api/player/data/";
 	private static final String m_pkUrl = "https://fantasy.hupu.com/api/schedule/pk";
+	private static final String m_cookie = "_dacevid3=236321bd.c093.41d3.5ffb.f753994e83b1; __gads=ID=727eb2f522de16ab:T=1474954942:S=ALNI_MZw8nOKxIcBvikk7mTmrQNHGcVhzA; _HUPUSSOID=3b99c7c1-4466-47e2-8a76-0f8d7518cf1f; __utma=1.1148436718.1477458430.1477458430.1477458430.1; __utmc=1; __utmz=1.1477458430.1.1.utmcsr=nba.hupu.com|utmccn=(referral)|utmcmd=referral|utmcct=/; BDTUJIAID=8983bfa7460050059a5d9f66a8feab92; __dacevid3=0x97e0bc6bc3f22813; cn_2815e201bfe10o53c980_dplus=%7B%22distinct_id%22%3A%20%221582c04c4faf9-0069e8b0ee7b33-5c412b1c-151800-1582c04c4fb2d9%22%2C%22%24_sessionid%22%3A%201%2C%22%24_sessionTime%22%3A%201489640170%2C%22%24dp%22%3A%200%2C%22%24_sessionPVTime%22%3A%201489640170%2C%22%24uid%22%3A%20%22236321bd.c093.41d3.5ffb.f753994e83b1%22%2C%22initial_view_time%22%3A%20%221478204992%22%2C%22initial_referrer%22%3A%20%22http%3A%2F%2Fvoice.hupu.com%2Fnba%2F2085604.html%22%2C%22initial_referrer_domain%22%3A%20%22voice.hupu.com%22%2C%22%24recent_outside_referrer%22%3A%20%22%24direct%22%7D; UM_distinctid=1582c04c4faf9-0069e8b0ee7b33-5c412b1c-151800-1582c04c4fb2d9; _CLT=b0c2a05996d8b48b354e1fa4ddfc1fef; u=25952345|TEJK6Zu36Zy46b6ZSg==|4515|be39c713693c2d5c497e155910c3d343|693c2d5c497e1559|TEJK6Zu36Zy46b6ZSg==; us=a0dff63e780cc2c15396e6d811a8cb32d3381690e22cc532a1fa85b06d53dd63a40f0d6a6b907d32da0bb46d478f7e47c21178c5f36855320963909fbf86c40e; ua=32390968; Hm_lvt_83e002d3682da24bb5fc96ff802d0ee1=1489907659,1489907723,1489907764; Hm_lpvt_83e002d3682da24bb5fc96ff802d0ee1=1489984561";
 	private static String m_method = "GET";
 	private ArrayList<Player> m_pg;
 	private ArrayList<Player> m_sg;
@@ -26,7 +29,7 @@ public class FantasyOptimizer {
 	private ArrayList<Player> m_c;
 	private ArrayList<Lineup> m_lineup;
 	
-	private ArrayList<Player> m_injury;
+	//private ArrayList<Player> m_injury;
 	
 	public FantasyOptimizer(){
 		m_pg = new ArrayList<Player>();
@@ -34,21 +37,68 @@ public class FantasyOptimizer {
 		m_sf = new ArrayList<Player>();
 		m_pf = new ArrayList<Player>();
 		m_c = new ArrayList<Player>();
-		m_lineup = new ArrayList<Lineup>(20);
+		m_lineup = new ArrayList<Lineup>();
 	}
 	
 	public static void main(String[] in_args) throws Exception {
 		FantasyOptimizer fo = new FantasyOptimizer();
-		fo.getPlayer();
+		String id = fo.getId();
+		fo.getPlayer(id);
 		fo.optimize();
 		fo.pk();
 	}
 	
+	private String getId() throws Exception{
+		URL object = new URL(m_homeUrl);
+
+		HttpURLConnection con = (HttpURLConnection) object.openConnection();
+		con.setRequestProperty("Cookie", m_cookie);
+		con.setRequestMethod("POST");
+		
+		StringBuilder sb = new StringBuilder();  
+		int HttpResult = con.getResponseCode(); 
+
+		if (HttpResult == HttpURLConnection.HTTP_OK) {
+		    BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
+		    String line = null;  
+		    while ((line = br.readLine()) != null) {  
+		        sb.append(line + "\n");  
+		    }
+		    br.close();
+		    
+
+		} else {
+			System.out.println("Get game id");  
+		    System.out.println(con.getResponseMessage());  
+		}
+		
+		String id = parseId(sb.toString());
+		return id;	
+	}
+	
+	private String parseId(String playerList) throws Exception {
+		
+		JsonFactory factory = new JsonFactory();
+
+		JsonParser m_parser = factory.createParser(playerList);
+		ObjectMapper mapper = new ObjectMapper();
+
+		JsonNode rootArray = mapper.readTree(m_parser);
+		//System.out.println(rootArray);
+		String id = "";
+		JsonNode rootnew = rootArray.path("normal_games");
+		for (JsonNode root : rootnew) {
+			id = root.path("id").asText();
+			return id;
+		}
+		return id;
+	}
+	
+	
 	private void pk() throws Exception{
 		URL object = new URL(m_pkUrl);
-		String cookie = "_dacevid3=236321bd.c093.41d3.5ffb.f753994e83b1; __gads=ID=727eb2f522de16ab:T=1474954942:S=ALNI_MZw8nOKxIcBvikk7mTmrQNHGcVhzA; _HUPUSSOID=3b99c7c1-4466-47e2-8a76-0f8d7518cf1f; __utma=1.1148436718.1477458430.1477458430.1477458430.1; __utmc=1; __utmz=1.1477458430.1.1.utmcsr=nba.hupu.com|utmccn=(referral)|utmcmd=referral|utmcct=/; BDTUJIAID=8983bfa7460050059a5d9f66a8feab92; __dacevid3=0x97e0bc6bc3f22813; cn_2815e201bfe10o53c980_dplus=%7B%22distinct_id%22%3A%20%221582c04c4faf9-0069e8b0ee7b33-5c412b1c-151800-1582c04c4fb2d9%22%2C%22%24_sessionid%22%3A%201%2C%22%24_sessionTime%22%3A%201489640170%2C%22%24dp%22%3A%200%2C%22%24_sessionPVTime%22%3A%201489640170%2C%22%24uid%22%3A%20%22236321bd.c093.41d3.5ffb.f753994e83b1%22%2C%22initial_view_time%22%3A%20%221478204992%22%2C%22initial_referrer%22%3A%20%22http%3A%2F%2Fvoice.hupu.com%2Fnba%2F2085604.html%22%2C%22initial_referrer_domain%22%3A%20%22voice.hupu.com%22%2C%22%24recent_outside_referrer%22%3A%20%22%24direct%22%7D; UM_distinctid=1582c04c4faf9-0069e8b0ee7b33-5c412b1c-151800-1582c04c4fb2d9; _CLT=b0c2a05996d8b48b354e1fa4ddfc1fef; u=25952345|TEJK6Zu36Zy46b6ZSg==|4515|be39c713693c2d5c497e155910c3d343|693c2d5c497e1559|TEJK6Zu36Zy46b6ZSg==; us=a0dff63e780cc2c15396e6d811a8cb32d3381690e22cc532a1fa85b06d53dd63a40f0d6a6b907d32da0bb46d478f7e47c21178c5f36855320963909fbf86c40e; ua=32390968; Hm_lvt_83e002d3682da24bb5fc96ff802d0ee1=1489907659,1489907723,1489907764; Hm_lpvt_83e002d3682da24bb5fc96ff802d0ee1=1489984561";
 		HttpURLConnection con = (HttpURLConnection) object.openConnection();
-		con.setRequestProperty("Cookie", cookie);
+		con.setRequestProperty("Cookie", m_cookie);
 		con.setRequestMethod("POST");
 		
 		StringBuilder sb = new StringBuilder();  
@@ -126,10 +176,10 @@ public class FantasyOptimizer {
 
 	
 	
-	private void getPlayer() throws Exception{
+	private void getPlayer(String id) throws Exception{
 		
 		for(int position=1;position<=5;position++){
-			URL object = new URL(m_listBaseUrl+position);
+			URL object = new URL(m_listBaseUrl + id + "/" + position);
 
 			HttpURLConnection con = (HttpURLConnection) object.openConnection();
 
@@ -319,6 +369,9 @@ public class FantasyOptimizer {
 							
 							if(lu.score>baseline){
 								m_lineup.add(lu);
+							}
+							else{
+								lu = null;
 							}
 						}
 					}
