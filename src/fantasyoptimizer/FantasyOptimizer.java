@@ -135,11 +135,11 @@ public class FantasyOptimizer {
 			Player p1 = findPlayer(p1name);
 			Player p2 = findPlayer(p2name);
 			if(p1!=null&&p2!=null){
-				System.out.print(p1.m_playerName + ":" + p1.m_expected);
+				System.out.print(p1.m_displayName + ":" + p1.m_expected);
 				System.out.print("\tvs\t");
-				System.out.println(p2.m_playerName + ":" + p2.m_expected);
+				System.out.println(p2.m_displayName + ":" + p2.m_expected);
 				
-				System.out.print("Recommended:" + (p1.m_expected+spread>p2.m_expected?p1.m_playerName:p2.m_playerName));
+				System.out.print("Recommended:" + (p1.m_expected+spread>p2.m_expected?p1.m_displayName:p2.m_displayName));
 				System.out.println("\tCertainty:"+Math.abs(p1.m_expected+spread-p2.m_expected));
 			}
 		}
@@ -308,17 +308,17 @@ public class FantasyOptimizer {
 		if(bound > 10)
 			bound= 10;
 		for(int i = 0;i<bound;i++){
-			System.out.print(m_pg.get(i).m_playerName);
+			System.out.print(m_pg.get(i).m_displayName);
 			//System.out.print(m_pg.get(i).m_ability);
 			//System.out.print(m_pg.get(i).m_expected);
 			System.out.print("\t");
-			System.out.print(m_sg.get(i).m_playerName);
+			System.out.print(m_sg.get(i).m_displayName);
 			System.out.print("\t");
-			System.out.print(m_sf.get(i).m_playerName);
+			System.out.print(m_sf.get(i).m_displayName);
 			System.out.print("\t");
-			System.out.print(m_pf.get(i).m_playerName);
+			System.out.print(m_pf.get(i).m_displayName);
 			System.out.print("\t");
-			System.out.println(m_c.get(i).m_playerName);
+			System.out.println(m_c.get(i).m_displayName);
 			
 		}
 		int baseline = 105;
@@ -392,15 +392,15 @@ public class FantasyOptimizer {
 		for(int l=0;l<bound;l++){
 			Lineup line = m_lineup.get(l);
 			
-			System.out.print(line.m_pg.m_playerName);
+			System.out.print(line.m_pg.m_displayName);
 			System.out.print("\t");
-			System.out.print(line.m_sg.m_playerName);
+			System.out.print(line.m_sg.m_displayName);
 			System.out.print("\t");
-			System.out.print(line.m_sf.m_playerName);
+			System.out.print(line.m_sf.m_displayName);
 			System.out.print("\t");
-			System.out.print(line.m_pf.m_playerName);
+			System.out.print(line.m_pf.m_displayName);
 			System.out.print("\t");
-			System.out.print(line.m_c.m_playerName);
+			System.out.print(line.m_c.m_displayName);
 			System.out.println("\t:"+line.score);
 		}
 	}

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Player {
 	
 	public String m_playerName;
+	public String m_displayName;
 	public String m_enName;
 	public double m_average;
 	public double m_latest10average;
@@ -17,6 +18,7 @@ public class Player {
 	
 	public Player(String name, String en_name, double average,double l10average, int injury, int salary, int id, double ability, ArrayList<Double> opponentScores){
 		m_playerName = name;
+		m_displayName = name;
 		m_enName = en_name;
 		m_average = average;
 		m_latest10average = l10average;
