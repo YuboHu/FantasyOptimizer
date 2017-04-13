@@ -1,0 +1,102 @@
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server version:        Apache Tomcat/7.0.75
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server built:          Jan 18 2017 20:54:42 UTC
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server number:         7.0.75.0
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Name:               Windows 10
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Version:            10.0
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Architecture:          amd64
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Java Home:             C:\Program Files\Java\jdk1.8.0_121\jre
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Version:           1.8.0_121-b13
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Vendor:            Oracle Corporation
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_BASE:         D:\Workspace2\apache-tomcat-7.0.75
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_HOME:         D:\Workspace2\apache-tomcat-7.0.75
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.config.file=D:\Workspace2\apache-tomcat-7.0.75\conf\logging.properties
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.endorsed.dirs=D:\Workspace2\apache-tomcat-7.0.75\endorsed
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.base=D:\Workspace2\apache-tomcat-7.0.75
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.home=D:\Workspace2\apache-tomcat-7.0.75
+Apr 13, 2017 11:11:36 AM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.io.tmpdir=D:\Workspace2\apache-tomcat-7.0.75\temp
+Apr 13, 2017 11:11:36 AM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: Loaded APR based Apache Tomcat Native library 1.2.10 using APR version 1.5.2.
+Apr 13, 2017 11:11:36 AM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+Apr 13, 2017 11:11:37 AM org.apache.catalina.core.AprLifecycleListener initializeSSL
+INFO: OpenSSL successfully initialized (OpenSSL 1.0.2j  26 Sep 2016)
+Apr 13, 2017 11:11:37 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-apr-8080"]
+Apr 13, 2017 11:11:37 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-apr-8009"]
+Apr 13, 2017 11:11:37 AM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 963 ms
+Apr 13, 2017 11:11:37 AM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Apr 13, 2017 11:11:37 AM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.75
+Apr 13, 2017 11:11:37 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace2\apache-tomcat-7.0.75\webapps\docs
+Apr 13, 2017 11:11:37 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace2\apache-tomcat-7.0.75\webapps\docs has finished in 212 ms
+Apr 13, 2017 11:11:37 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace2\apache-tomcat-7.0.75\webapps\examples
+Apr 13, 2017 11:11:38 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace2\apache-tomcat-7.0.75\webapps\examples has finished in 1,114 ms
+Apr 13, 2017 11:11:38 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace2\apache-tomcat-7.0.75\webapps\host-manager
+Apr 13, 2017 11:11:38 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace2\apache-tomcat-7.0.75\webapps\host-manager has finished in 59 ms
+Apr 13, 2017 11:11:38 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace2\apache-tomcat-7.0.75\webapps\manager
+Apr 13, 2017 11:11:38 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace2\apache-tomcat-7.0.75\webapps\manager has finished in 37 ms
+Apr 13, 2017 11:11:38 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace2\apache-tomcat-7.0.75\webapps\ROOT
+Apr 13, 2017 11:11:38 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace2\apache-tomcat-7.0.75\webapps\ROOT has finished in 37 ms
+Apr 13, 2017 11:11:38 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-apr-8080"]
+Apr 13, 2017 11:11:38 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-apr-8009"]
+Apr 13, 2017 11:11:38 AM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1499 ms
+Apr 13, 2017 11:12:19 AM org.apache.catalina.startup.Catalina stopServer
+SEVERE: Could not contact localhost:8005. Tomcat may not be running.
+Apr 13, 2017 11:12:19 AM org.apache.catalina.startup.Catalina stopServer
+SEVERE: Catalina.stop: 
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:211)
+	at org.apache.catalina.startup.Catalina.stopServer(Catalina.java:498)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.stopServer(Bootstrap.java:343)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:430)
+

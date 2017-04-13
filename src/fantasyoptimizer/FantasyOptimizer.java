@@ -1,6 +1,8 @@
 package fantasyoptimizer;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -8,12 +10,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
 public class FantasyOptimizer {
+	
+	private static final String m_dir = System.getProperty("user.dir");
+	private static final String m_rankPath = m_dir+ "/rank.json";
+	private static final String m_lineupPath = m_dir + "/lineup.json";
+	private static final String m_pkPath = m_dir + "/pk.json";
 
 	private static final String m_listBaseUrl = "https://fantasy.hupu.com/api/player/candidates/";
 	private static final String m_homeUrl = "https://fantasy.hupu.com/api/schedule/normal";
@@ -47,7 +57,7 @@ public class FantasyOptimizer {
 		fo.pk();
 	}
 	
-	private String getId() throws Exception{
+	public String getId() throws Exception{
 		URL object = new URL(m_homeUrl);
 
 		HttpURLConnection con = (HttpURLConnection) object.openConnection();
@@ -94,7 +104,7 @@ public class FantasyOptimizer {
 	}
 	
 	
-	private void pk() throws Exception{
+	public void pk() throws Exception{
 		URL object = new URL(m_pkUrl);
 		HttpURLConnection con = (HttpURLConnection) object.openConnection();
 		con.setRequestProperty("Cookie", m_cookie);
@@ -175,7 +185,7 @@ public class FantasyOptimizer {
 
 	
 	
-	private void getPlayer(String id) throws Exception{
+	public void getPlayer(String id) throws Exception {
 		
 		for(int position=1;position<=5;position++){
 			URL object = new URL(m_listBaseUrl + id + "/" + position);
@@ -220,15 +230,16 @@ public class FantasyOptimizer {
 			String name = root.path("name").asText();
 			int injury = root.path("injuryStatus").asInt();
 			int salary = root.path("salary").asInt();
+			String headImg = root.path("head_img").asText();
 			String team = root.path("team").asText();
 			String hometeam = root.path("home_team").asText();
 			String awayteam = root.path("away_team").asText();
 			String opponent = team.equals(hometeam) ? awayteam : hometeam;
-			getPlayerDetail(id,average,name,injury,salary,position,opponent);
+			getPlayerDetail(id,average,name,injury,salary,position,opponent,headImg);
 		}
 	}
 	
-	private void getPlayerDetail(int id,double average,String name,int injury,int salary,int position,String opponent) throws Exception {
+	private void getPlayerDetail(int id,double average,String name,int injury,int salary,int position,String opponent, String headImg) throws Exception {
 		URL object = new URL(m_detailBaseUrl+id);
 
 		HttpURLConnection con = (HttpURLConnection) object.openConnection();
@@ -276,7 +287,7 @@ public class FantasyOptimizer {
 			}
 		}
 		
-		Player player = new Player(name,en_name,average,lastten,injury,salary, id, ability,opponentScores);
+		Player player = new Player(name,en_name,average,lastten,injury,salary, id, ability,opponentScores,headImg);
 		
 		switch(position){
 			case 1: m_pg.add(player);break;
@@ -289,7 +300,7 @@ public class FantasyOptimizer {
 		
 	}
 	
-	private void optimize(){
+	public void optimize() throws IOException{
 		Comparator<Player> cp = new Comparator<Player>() {
             public int compare(Player p1, Player p2) {
                 return p1.m_rate > p2.m_rate ? -1 : p1.m_rate == p2.m_rate ? 0 : 1;
@@ -300,26 +311,9 @@ public class FantasyOptimizer {
 		Collections.sort(m_sf, cp);
 		Collections.sort(m_pf, cp);
 		Collections.sort(m_c, cp);
-		System.out.println("High value/salary in each position\n");
-		System.out.println("PG\tSG\tSF\tPF\tC\t");
+
+		generateRankJson();
 		
-		int bound = m_pg.size();
-		if(bound > 10)
-			bound= 10;
-		for(int i = 0;i<bound;i++){
-			System.out.print(m_pg.get(i).m_displayName);
-			//System.out.print(m_pg.get(i).m_ability);
-			//System.out.print(m_pg.get(i).m_expected);
-			System.out.print("\t");
-			System.out.print(m_sg.get(i).m_displayName);
-			System.out.print("\t");
-			System.out.print(m_sf.get(i).m_displayName);
-			System.out.print("\t");
-			System.out.print(m_pf.get(i).m_displayName);
-			System.out.print("\t");
-			System.out.println(m_c.get(i).m_displayName);
-			
-		}
 		int baseline = 105;
 		for(int pg=0; pg < m_pg.size() ;pg++){
 			Player p = m_pg.get(pg);
@@ -384,7 +378,7 @@ public class FantasyOptimizer {
             }
         };
 		Collections.sort(m_lineup, cpl);
-		bound = m_lineup.size();
+		int bound = m_lineup.size();
 		if(bound > 20)
 			bound= 20;
 		System.out.println();
@@ -402,5 +396,99 @@ public class FantasyOptimizer {
 			System.out.print(line.m_c.m_displayName);
 			System.out.println("\t:"+line.score);
 		}
+	}
+
+	private void generateRankJson() throws IOException {
+		
+		JsonFactory factory = new JsonFactory();
+		JsonGenerator generator = factory.createGenerator(new File(m_rankPath), JsonEncoding.UTF8);
+		
+		//Write the topmost '{'
+		generator.writeStartObject(); 
+		
+		generator.writeFieldName("rank");
+		
+		//rank object start
+		generator.writeStartObject(); 
+		int bound = m_pg.size() > 10? 10 : m_pg.size();
+		//pg
+		generator.writeFieldName("pg");
+		generator.writeStartArray();
+		for(int i = 0;i<bound;i++){
+			generator.writeStartObject();
+			generator.writeStringField("name", m_pg.get(i).m_displayName);
+			generator.writeStringField("headImg", m_pg.get(i).m_headImg);
+			generator.writeEndObject();
+		}
+		generator.writeEndArray();
+		
+		//sg
+		bound = m_sg.size() > 10? 10 : m_sg.size();
+		generator.writeFieldName("sg");
+		generator.writeStartArray();
+		for(int i = 0;i<bound;i++){
+			generator.writeStartObject();
+			generator.writeStringField("name", m_sg.get(i).m_displayName);
+			generator.writeStringField("headImg", m_sg.get(i).m_headImg);
+			generator.writeEndObject();
+		}
+		generator.writeEndArray();
+		
+		//sf
+		bound = m_sf.size() > 10? 10 : m_sf.size();
+		generator.writeFieldName("sf");
+		generator.writeStartArray();
+		for(int i = 0;i<bound;i++){
+			generator.writeStartObject();
+			generator.writeStringField("name", m_sf.get(i).m_displayName);
+			generator.writeStringField("headImg", m_sf.get(i).m_headImg);
+			generator.writeEndObject();
+		}
+		generator.writeEndArray();
+		
+		//pf
+		bound = m_pf.size() > 10? 10 : m_pf.size();
+		generator.writeFieldName("pf");
+		generator.writeStartArray();
+		for(int i = 0;i<bound;i++){
+			generator.writeStartObject();
+			generator.writeStringField("name", m_pf.get(i).m_displayName);
+			generator.writeStringField("headImg", m_pf.get(i).m_headImg);
+			generator.writeEndObject();
+		}
+		generator.writeEndArray();
+		
+		//c
+		bound = m_c.size() > 10? 10 : m_c.size();
+		generator.writeFieldName("c");
+		generator.writeStartArray();
+		for(int i = 0;i<bound;i++){
+			generator.writeStartObject();
+			generator.writeStringField("name", m_c.get(i).m_displayName);
+			generator.writeStringField("headImg", m_c.get(i).m_headImg);
+			generator.writeEndObject();
+		}
+		generator.writeEndArray();
+		
+		//rank object end
+		generator.writeEndObject();
+
+		// Write the bottommost '}'
+		generator.writeEndObject();
+		
+		generator.close();
+		
+	}
+	
+	public static String getRankpath() {
+		return m_rankPath;
+	}
+
+	public static String getLineuppath() {
+		return m_lineupPath;
+	}
+
+	public static String getPkpath() {
+		return m_pkPath;
 	}
 }

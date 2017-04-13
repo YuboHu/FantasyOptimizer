@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_121"/>
-	<classpathentry kind="lib" path="lib/jackson-annotations-2.6.2.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-core-2.6.2.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-databind-2.6.2.jar"/>
-	<classpathentry kind="lib" path="lib/jackson-datatype-jdk8-2.6.2.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-annotations-2.6.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-2.6.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-databind-2.6.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-datatype-jdk8-2.6.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-bundle-1.19.1.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
 </classpath>

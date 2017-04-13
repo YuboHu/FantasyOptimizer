@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Player {
 	
 	public String m_playerName;
-	public String m_displayName;
 	public String m_enName;
+	public String m_displayName;
 	public double m_average;
 	public double m_latest10average;
 	public int m_injury;//0: injured; 1:light injury;2:healthy
@@ -15,10 +15,11 @@ public class Player {
 	public double m_ability;
 	public double m_rate;
 	public double m_expected;
+	public String m_headImg;
 	
-	public Player(String name, String en_name, double average,double l10average, int injury, int salary, int id, double ability, ArrayList<Double> opponentScores){
+	public Player(String name, String en_name, double average,double l10average, int injury, int salary, int id, double ability, ArrayList<Double> opponentScores, String headImg){
 		m_playerName = name;
-		m_displayName = name;
+		m_displayName = en_name;
 		m_enName = en_name;
 		m_average = average;
 		m_latest10average = l10average;
@@ -26,7 +27,7 @@ public class Player {
 		m_salary = salary;
 		m_id = id;
 		m_ability = ability;
-
+		m_headImg = headImg;
 		computeExpected(opponentScores);
 		computeRate();
 	}
