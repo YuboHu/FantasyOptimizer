@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
     <script src="jquery-3.1.1.min.js"></script>
+    <script src="jsrender.min.js"></script>
+    <script id="player-info-tmp" type="text/x-jsrender">
+      <div class="img-bg-pair">
+        <div class="player-img">
+        </div>
+        <div class="player-img-bg">
+        </div>
+      </div>
+      <div class="player-name">
+        {{:name}}
+      </div>
+    </script>
+    <script src="data.js"></script>
     <script src="index.js"></script>
   </head>
 
@@ -21,5 +34,91 @@
       <li class="tab" id="tab-rank" onclick="switchTab(event)">阵容推荐</li>
       <li class="tab" id="tab-pk" onclick="switchTab(event)">大乱斗</li>
     </ul>
+
+    <div class="price-performance">
+      <table class="price-performance-table">
+        <thead>
+          <tr>
+            <th class="first-col">PG</th>
+            <th>SG</th>
+            <th>SF</th>
+            <th>PF</th>
+            <th>C</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="pp-table-tr-0">
+            <td class="first-col" id="pp-table-pg-0"></td>
+            <td id="pp-table-sg-0"></td>
+            <td id="pp-table-sf-0"></td>
+            <td id="pp-table-pf-0"></td>
+            <td id="pp-table-c-0"></td>
+          </tr>
+          <tr id="pp-table-tr-1">
+            <td class="first-col" id="pp-table-pg-1"></td>
+            <td id="pp-table-sg-1"></td>
+            <td id="pp-table-sf-1"></td>
+            <td id="pp-table-pf-1"></td>
+            <td id="pp-table-c-1"></td>
+          </tr>
+          <tr id="pp-table-tr-2">
+            <td class="first-col" id="pp-table-pg-2"></td>
+            <td id="pp-table-sg-2"></td>
+            <td id="pp-table-sf-2"></td>
+            <td id="pp-table-pf-2"></td>
+            <td id="pp-table-c-2"></td>
+          </tr>
+          <tr id="pp-table-tr-3">
+            <td class="first-col" id="pp-table-pg-3"></td>
+            <td id="pp-table-sg-3"></td>
+            <td id="pp-table-sf-3"></td>
+            <td id="pp-table-pf-3"></td>
+            <td id="pp-table-c-3"></td>
+          </tr>
+          <tr id="pp-table-tr-4">
+            <td class="first-col" id="pp-table-pg-4"></td>
+            <td id="pp-table-sg-4"></td>
+            <td id="pp-table-sf-4"></td>
+            <td id="pp-table-pf-4"></td>
+            <td id="pp-table-c-4"></td>
+          </tr>
+          <tr id="pp-table-tr-5">
+            <td class="first-col" id="pp-table-pg-5"></td>
+            <td id="pp-table-sg-5"></td>
+            <td id="pp-table-sf-5"></td>
+            <td id="pp-table-pf-5"></td>
+            <td id="pp-table-c-5"></td>
+          </tr>
+          <tr id="pp-table-tr-6">
+            <td class="first-col" id="pp-table-pg-6"></td>
+            <td id="pp-table-sg-6"></td>
+            <td id="pp-table-sf-6"></td>
+            <td id="pp-table-pf-6"></td>
+            <td id="pp-table-c-6"></td>
+          </tr>
+          <tr id="pp-table-tr-7">
+            <td class="first-col" id="pp-table-pg-7"></td>
+            <td id="pp-table-sg-7"></td>
+            <td id="pp-table-sf-7"></td>
+            <td id="pp-table-pf-7"></td>
+            <td id="pp-table-c-7"></td>
+          </tr>
+          <tr id="pp-table-tr-8">
+            <td class="first-col" id="pp-table-pg-8"></td>
+            <td id="pp-table-sg-8"></td>
+            <td id="pp-table-sf-8"></td>
+            <td id="pp-table-pf-8"></td>
+            <td id="pp-table-c-8"></td>
+          </tr>
+          <tr id="pp-table-tr-9">
+            <td class="first-col" id="pp-table-pg-9"></td>
+            <td id="pp-table-sg-9"></td>
+            <td id="pp-table-sf-9"></td>
+            <td id="pp-table-pf-9"></td>
+            <td id="pp-table-c-9"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>
