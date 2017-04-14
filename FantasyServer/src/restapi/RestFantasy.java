@@ -2,8 +2,12 @@ package restapi;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -25,13 +29,14 @@ import fantasyoptimizer.FantasyOptimizer;
 
 @Path("")
 public class RestFantasy {
-	// This method is called if TEXT_PLAIN is request
+	
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAll() throws IOException {
 		
 		ResponseBuilder response = getraw(FantasyOptimizer.getAllpath());
+		response.header("Access-Control-Allow-Origin", "*");
 		return response.build();
 	}
 	
@@ -41,6 +46,7 @@ public class RestFantasy {
 	public Response getRank() throws IOException {
 		
 		ResponseBuilder response = getraw(FantasyOptimizer.getRankpath());
+		response.header("Access-Control-Allow-Origin", "*");
 		return response.build();
 	}
 
@@ -50,6 +56,7 @@ public class RestFantasy {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getLineup() throws IOException {
 		ResponseBuilder response = getraw(FantasyOptimizer.getLineuppath());
+		response.header("Access-Control-Allow-Origin", "*");
 		return response.build();
 	}
 
@@ -59,6 +66,7 @@ public class RestFantasy {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPk() throws IOException {
 		ResponseBuilder response = getraw(FantasyOptimizer.getPkpath());
+		response.header("Access-Control-Allow-Origin", "*");
 		return response.build();
 	}
 	
@@ -79,7 +87,9 @@ public class RestFantasy {
 		if (!yourFile.exists()) {
 			return Response.status(404);
 		}
-		BufferedReader reader = new BufferedReader(new FileReader(m_filepath));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+                new FileInputStream(m_filepath), "UTF8"));
+		
 		String line = null;
 		StringBuilder stringBuilder = new StringBuilder();
 		String ls = System.getProperty("line.separator");
