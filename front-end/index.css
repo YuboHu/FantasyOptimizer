@@ -6,6 +6,7 @@ div.big-title {
   color: white;
   background-color: #AE1000;
   position: fixed;
+  z-index: 5;
 }
 
 div.place-holder {
@@ -18,15 +19,77 @@ ul.nav {
   table-layout: fixed;
 }
 
-ul.nav > li{
+ul.nav > li {
   padding: 10px;
   display: table-cell;
-  width: 33.3333%;
+  width: 33%;
   text-align: center;
   border-bottom: 1px solid #ccc;
 }
 
+ul.nav > li#tab-pk {
+  width: 34% !important;
+}
+
 ul.nav > li.active{
-  font-weight: bold;
+  font-weight: bolder;
   border-bottom: 2px solid #AE1000;
+}
+
+.price-performance-table {
+  font-size: 15px;
+  width: 100%;
+}
+
+.price-performance-table > thead > tr > th {
+  width: 20%;
+  text-align: center;
+  padding: 10px;
+  font-weight: normal;
+  border-left: 1px solid #eee;
+}
+
+.price-performance-table > tbody > tr > td {
+  width: 20%;
+  text-align: center;
+  padding: 5px;
+  font-weight: normal;
+  color: #888;
+  border-left: 1px solid #eee;
+}
+
+.first-col {
+  border-left: none !important;
+}
+
+div.player-name {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 10px;
+}
+
+div.img-bg-pair {
+  width: 50px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.player-img-bg {
+  width: 50px;
+  height: 50px;
+  background-color: #eee;
+  border-radius: 25px;
+}
+
+div.player-img {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #eee;
+  background-size: auto 65px;
+  border-radius: 25px;
+  background-position: 50% 20%;
 }
