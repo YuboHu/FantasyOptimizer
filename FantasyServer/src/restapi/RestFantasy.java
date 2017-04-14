@@ -35,8 +35,6 @@ public class RestFantasy {
 		return response.build();
 	}
 	
-
-
 	@GET
 	@Path("/rank")
 	@Produces(MediaType.APPLICATION_JSON)

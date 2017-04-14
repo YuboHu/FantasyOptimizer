@@ -138,7 +138,7 @@ public class FantasyOptimizer {
 		JsonNode root = rootArray.path("data");
 		
 		
-		JsonGenerator generator = factory.createGenerator(new File(m_rankPath), JsonEncoding.UTF8);
+		JsonGenerator generator = factory.createGenerator(new File(m_pkPath), JsonEncoding.UTF8);
 		
 		//Write the topmost '{'
 		generator.writeStartObject(); 
@@ -170,6 +170,7 @@ public class FantasyOptimizer {
 		generator.writeEndArray();
 		
 		generator.writeEndObject(); 
+		generator.close();
 	}
 	
 	private Player findPlayer(String name) throws Exception{
@@ -510,6 +511,7 @@ public class FantasyOptimizer {
 		generator.writeEndArray();
 		// Write the bottommost '}'
 		generator.writeEndObject();
+		generator.close();
 	}
 	
 	public static String getRankpath() {
