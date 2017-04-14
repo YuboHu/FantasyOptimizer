@@ -6,3 +6,10 @@
 127.0.0.1 - - [13/Apr/2017:11:12:05 -0700] "GET /bg-upper.png HTTP/1.1" 200 3103
 127.0.0.1 - - [13/Apr/2017:11:12:05 -0700] "GET /bg-button.png HTTP/1.1" 200 713
 127.0.0.1 - - [13/Apr/2017:11:12:05 -0700] "GET /bg-middle.png HTTP/1.1" 200 1918
+127.0.0.1 - - [13/Apr/2017:17:04:44 -0700] "GET /FantasyServer/rank HTTP/1.1" 404 -
+127.0.0.1 - - [13/Apr/2017:17:04:51 -0700] "GET /FantasyServer/rank HTTP/1.1" 404 -
+127.0.0.1 - - [13/Apr/2017:17:06:05 -0700] "GET /FantasyServer/rank HTTP/1.1" 404 -
+127.0.0.1 - - [13/Apr/2017:17:06:09 -0700] "GET /FantasyServer/FantasyServer/rank HTTP/1.1" 404 -
+127.0.0.1 - - [13/Apr/2017:17:09:04 -0700] "GET /FantasyServer/optimize HTTP/1.1" 200 -
+127.0.0.1 - - [13/Apr/2017:17:09:28 -0700] "GET /FantasyServer/rank HTTP/1.1" 200 6208
+192.168.203.32 - - [13/Apr/2017:17:10:34 -0700] "GET /FantasyServer/rank HTTP/1.1" 200 6208

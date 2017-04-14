@@ -27,6 +27,17 @@ import fantasyoptimizer.FantasyOptimizer;
 public class RestFantasy {
 	// This method is called if TEXT_PLAIN is request
 	@GET
+	@Path("/all")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAll() throws IOException {
+		
+		ResponseBuilder response = getraw(FantasyOptimizer.getAllpath());
+		return response.build();
+	}
+	
+
+
+	@GET
 	@Path("/rank")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getRank() throws IOException {
@@ -80,6 +91,5 @@ public class RestFantasy {
 		reader.close();
 		return Response.status(200).entity(jsonString);
 	}
-	
 
 }

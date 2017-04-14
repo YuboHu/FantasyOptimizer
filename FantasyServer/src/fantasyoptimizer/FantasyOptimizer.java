@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class FantasyOptimizer {
 	
 	private static final String m_dir = System.getProperty("user.dir");
+	private static final String m_allPath = m_dir+ "/all.json";
 	private static final String m_rankPath = m_dir+ "/rank.json";
 	private static final String m_lineupPath = m_dir + "/lineup.json";
 	private static final String m_pkPath = m_dir + "/pk.json";
@@ -300,7 +301,7 @@ public class FantasyOptimizer {
 		
 	}
 	
-	public void optimize() throws IOException{
+	public void optimize() throws Exception{
 		Comparator<Player> cp = new Comparator<Player>() {
             public int compare(Player p1, Player p2) {
                 return p1.m_rate > p2.m_rate ? -1 : p1.m_rate == p2.m_rate ? 0 : 1;
@@ -378,24 +379,7 @@ public class FantasyOptimizer {
             }
         };
 		Collections.sort(m_lineup, cpl);
-		int bound = m_lineup.size();
-		if(bound > 20)
-			bound= 20;
-		System.out.println();
-		for(int l=0;l<bound;l++){
-			Lineup line = m_lineup.get(l);
-			
-			System.out.print(line.m_pg.m_displayName);
-			System.out.print("\t");
-			System.out.print(line.m_sg.m_displayName);
-			System.out.print("\t");
-			System.out.print(line.m_sf.m_displayName);
-			System.out.print("\t");
-			System.out.print(line.m_pf.m_displayName);
-			System.out.print("\t");
-			System.out.print(line.m_c.m_displayName);
-			System.out.println("\t:"+line.score);
-		}
+		generateLineupJson();
 	}
 
 	private void generateRankJson() throws IOException {
@@ -477,7 +461,68 @@ public class FantasyOptimizer {
 		generator.writeEndObject();
 		
 		generator.close();
+	}
+	
+	public void generateLineupJson() throws Exception{
+		int bound = m_lineup.size() > 20 ? 20 : m_lineup.size();
 		
+		JsonFactory factory = new JsonFactory();
+		JsonGenerator generator = factory.createGenerator(new File(m_lineupPath), JsonEncoding.UTF8);
+		
+		//Write the topmost '{'
+		generator.writeStartObject(); 
+		
+		generator.writeFieldName("lineup");
+		generator.writeStartArray();
+		
+		
+		for(int l=0;l<bound;l++){
+			Lineup lineup = m_lineup.get(l);
+			generator.writeStartObject();
+			
+			Player pg = lineup.m_pg;
+			generator.writeFieldName("pg");
+			generator.writeStartObject();
+			generator.writeStringField("name", pg.m_displayName);
+			generator.writeStringField("headImg", pg.m_headImg);
+			generator.writeEndObject();
+			
+			Player sg = lineup.m_sg;
+			generator.writeFieldName("sg");
+			generator.writeStartObject();
+			generator.writeStringField("name", sg.m_displayName);
+			generator.writeStringField("headImg", sg.m_headImg);
+			generator.writeEndObject();
+			
+			Player sf = lineup.m_sf;
+			generator.writeFieldName("sf");
+			generator.writeStartObject();
+			generator.writeStringField("name", sf.m_displayName);
+			generator.writeStringField("headImg", sf.m_headImg);
+			generator.writeEndObject();
+			
+			Player pf = lineup.m_pf;
+			generator.writeFieldName("pf");
+			generator.writeStartObject();
+			generator.writeStringField("name", pf.m_displayName);
+			generator.writeStringField("headImg", pf.m_headImg);
+			generator.writeEndObject();
+			
+			Player c = lineup.m_c;
+			generator.writeFieldName("c");
+			generator.writeStartObject();
+			generator.writeStringField("name", c.m_displayName);
+			generator.writeStringField("headImg", c.m_headImg);
+			generator.writeEndObject();
+			
+			generator.writeNumberField("total", lineup.score);
+			
+			generator.writeEndObject();
+		}
+
+		generator.writeEndArray();
+		// Write the bottommost '}'
+		generator.writeEndObject();
 	}
 	
 	public static String getRankpath() {
@@ -490,5 +535,9 @@ public class FantasyOptimizer {
 
 	public static String getPkpath() {
 		return m_pkPath;
+	}
+	
+	public static String getAllpath() {
+		return m_allPath;
 	}
 }

@@ -100,3 +100,114 @@ java.net.ConnectException: Connection refused: connect
 	at org.apache.catalina.startup.Bootstrap.stopServer(Bootstrap.java:343)
 	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:430)
 
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server version:        Apache Tomcat/7.0.75
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server built:          Jan 18 2017 20:54:42 UTC
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server number:         7.0.75.0
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Name:               Windows 10
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Version:            10.0
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Architecture:          amd64
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Java Home:             C:\Program Files\Java\jdk1.8.0_121\jre
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Version:           1.8.0_121-b13
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Vendor:            Oracle Corporation
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_BASE:         D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_HOME:         D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.config.file=D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\conf\logging.properties
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.endorsed.dirs=D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\endorsed
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.base=D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.home=D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75
+Apr 13, 2017 5:04:30 PM org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.io.tmpdir=D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\temp
+Apr 13, 2017 5:04:30 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: Loaded APR based Apache Tomcat Native library 1.2.10 using APR version 1.5.2.
+Apr 13, 2017 5:04:30 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+Apr 13, 2017 5:04:31 PM org.apache.catalina.core.AprLifecycleListener initializeSSL
+INFO: OpenSSL successfully initialized (OpenSSL 1.0.2j  26 Sep 2016)
+Apr 13, 2017 5:04:31 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-apr-8080"]
+Apr 13, 2017 5:04:31 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-apr-8009"]
+Apr 13, 2017 5:04:31 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 844 ms
+Apr 13, 2017 5:04:31 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Apr 13, 2017 5:04:31 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.75
+Apr 13, 2017 5:04:31 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\FantasyServer.war
+Apr 13, 2017 5:04:31 PM org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+Apr 13, 2017 5:04:32 PM com.sun.jersey.api.core.servlet.WebAppResourceConfig init
+INFO: Scanning for root resource and provider classes in the Web app resource paths:
+  /WEB-INF/lib
+  /WEB-INF/classes
+Apr 13, 2017 5:04:32 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class restapi.RestFantasy
+Apr 13, 2017 5:04:32 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+Apr 13, 2017 5:04:32 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.19.1 03/11/2016 02:42 PM'
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\FantasyServer.war has finished in 1,218 ms
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\docs
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\docs has finished in 32 ms
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\examples
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\examples has finished in 150 ms
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\host-manager
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\host-manager has finished in 41 ms
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\manager
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\manager has finished in 31 ms
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\ROOT
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace2\FantasyOptimizer\apache-tomcat-7.0.75\webapps\ROOT has finished in 28 ms
+Apr 13, 2017 5:04:32 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-apr-8080"]
+Apr 13, 2017 5:04:32 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-apr-8009"]
+Apr 13, 2017 5:04:32 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1548 ms
+Apr 13, 2017 5:40:09 PM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+Apr 13, 2017 5:40:09 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-apr-8080"]
+Apr 13, 2017 5:40:09 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-apr-8009"]
+Apr 13, 2017 5:40:09 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Apr 13, 2017 5:40:09 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-apr-8080"]
+Apr 13, 2017 5:40:09 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-apr-8009"]
+Apr 13, 2017 5:40:09 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-apr-8080"]
+Apr 13, 2017 5:40:09 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-apr-8009"]
