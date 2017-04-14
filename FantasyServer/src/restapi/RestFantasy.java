@@ -66,10 +66,10 @@ public class RestFantasy {
 	@Path("/optimize")
 	public Response optimize() throws Exception {
 		FantasyOptimizer fo = new FantasyOptimizer();
-		//String id = "3569";
-		//fo.getPlayer(id);
-		//fo.optimize();
-		//fo.pk();
+		String id = "3569";
+		fo.getPlayer(id);
+		fo.optimize();
+		fo.pk();
 		fo.generateAllJson();
 		return Response.status(200).build();
 	}
