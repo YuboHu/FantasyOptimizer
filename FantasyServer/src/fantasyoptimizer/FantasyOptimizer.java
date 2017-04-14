@@ -2,13 +2,17 @@ package fantasyoptimizer;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonFactory;
@@ -16,6 +20,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 
 public class FantasyOptimizer {
@@ -466,7 +471,7 @@ public class FantasyOptimizer {
 		generator.close();
 	}
 	
-	public void generateLineupJson() throws Exception{
+	private void generateLineupJson() throws Exception{
 		int bound = m_lineup.size() > 20 ? 20 : m_lineup.size();
 		
 		JsonFactory factory = new JsonFactory();
@@ -536,4 +541,54 @@ public class FantasyOptimizer {
 		generator.writeStringField("headImg", p.m_headImg);
 		generator.writeEndObject();
 	}
+
+	public void generateAllJson() throws Exception{
+		String rank = readFile(m_rankPath);
+		String lineup = readFile(m_lineupPath);
+		String pk = readFile(m_pkPath);
+		
+		JsonFactory factory = new JsonFactory();
+
+		JsonParser rank_parser = factory.createParser(rank);
+		JsonParser lineup_parser = factory.createParser(lineup);
+		JsonParser pk_parser = factory.createParser(pk);
+		ObjectMapper mapper = new ObjectMapper();
+
+		JsonNode rankRoot = mapper.readTree(rank_parser);
+		JsonNode lineupRoot = mapper.readTree(lineup_parser);
+		JsonNode pkRoot = mapper.readTree(pk_parser);
+		
+		ObjectNode rootNode = mapper.createObjectNode();
+		
+		rootNode.setAll((ObjectNode)rankRoot);
+		rootNode.setAll((ObjectNode)lineupRoot);
+		rootNode.setAll((ObjectNode)pkRoot);
+
+		String allJson = rootNode.toString();
+		
+		PrintWriter out = new PrintWriter(m_allPath);
+		out.println(allJson);
+		out.close();
+	}
+	
+	private String readFile(String path) throws Exception{
+		File yourFile = new File(path);
+		if (!yourFile.exists()) {
+			return null;
+		}
+		BufferedReader reader = new BufferedReader(new FileReader(path));
+		String line = null;
+		StringBuilder stringBuilder = new StringBuilder();
+		String ls = System.getProperty("line.separator");
+		while ((line = reader.readLine()) != null) {
+			stringBuilder.append(line);
+			stringBuilder.append(ls);
+		}
+		String jsonString= stringBuilder.toString();
+		reader.close();
+		return jsonString;
+	}
+
 }
+
+
