@@ -1,0 +1,32 @@
+div.big-title {
+  padding: 10px;
+  font-size: 15px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  background-color: #AE1000;
+  position: fixed;
+}
+
+div.place-holder {
+  height: 41px;
+}
+
+ul.nav {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+
+ul.nav > li{
+  padding: 10px;
+  display: table-cell;
+  width: 33.3333%;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+ul.nav > li.active{
+  font-weight: bold;
+  border-bottom: 2px solid #AE1000;
+}
