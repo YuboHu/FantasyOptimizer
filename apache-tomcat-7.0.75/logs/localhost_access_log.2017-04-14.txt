@@ -30,3 +30,9 @@
 192.168.0.10 - - [14/Apr/2017:15:54:43 -0700] "GET /FantasyServer/lineup HTTP/1.1" 200 13227
 192.168.0.10 - - [14/Apr/2017:15:54:47 -0700] "GET /FantasyServer/pk HTTP/1.1" 200 1962
 192.168.0.10 - - [14/Apr/2017:15:54:50 -0700] "GET /FantasyServer/all HTTP/1.1" 200 21394
+192.168.0.14 - - [14/Apr/2017:15:55:52 -0700] "GET /FantasyServer/rank HTTP/1.1" 200 6125
+192.168.0.14 - - [14/Apr/2017:15:56:59 -0700] "GET /FantasyServer/rank HTTP/1.1" 200 6125
+192.168.0.14 - - [14/Apr/2017:15:57:33 -0700] "GET /FantasyServer/rank HTTP/1.1" 200 6125
+192.168.0.10 - - [14/Apr/2017:15:57:39 -0700] "GET /FantasyServer/all HTTP/1.1" 200 21394
+192.168.0.10 - - [14/Apr/2017:15:57:41 -0700] "GET /FantasyServer/all HTTP/1.1" 200 21394
+192.168.0.10 - - [14/Apr/2017:15:58:16 -0700] "GET /FantasyServer/all HTTP/1.1" 200 21394
