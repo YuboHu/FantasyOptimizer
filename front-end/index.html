@@ -30,12 +30,12 @@
     <div class="place-holder">
     </div>
     <ul class="nav">
-      <li class="tab active" id="tab-price-performance" onclick="switchTab(event)">性价比排行</li>
-      <li class="tab" id="tab-rank" onclick="switchTab(event)">阵容推荐</li>
+      <li class="tab active" id="tab-rank" onclick="switchTab(event)">性价比排行</li>
+      <li class="tab" id="tab-lineup" onclick="switchTab(event)">阵容推荐</li>
       <li class="tab" id="tab-pk" onclick="switchTab(event)">大乱斗</li>
     </ul>
 
-    <div class="price-performance">
+    <div class="tab-content" id="rank-content">
       <table class="price-performance-table">
         <thead>
           <tr>
@@ -130,6 +130,14 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="tab-content" id="lineup-content" style="display: none;">
+      lineup
+    </div>
+
+    <div class="tab-content" id="pk-content" style="display: none;">
+      pk
     </div>
   </body>
 </html>

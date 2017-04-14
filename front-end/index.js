@@ -38,5 +38,7 @@ function switchTab(event) {
   } else {
     $('li.active').removeClass('active');
     $('#' + targetId).addClass('active');
+    $('.tab-content').hide();
+    $('#'+targetId.slice(4)+'-content').show();
   }
 }
