@@ -71,6 +71,7 @@ public class RestFantasy {
 		String id = "3569";
 		fo.getPlayer(id);
 		fo.optimize();
+		fo.pk();
 		return Response.status(200).build();
 	}
 	

@@ -127,7 +127,6 @@ public class FantasyOptimizer {
 		    System.out.println(con.getResponseMessage());  
 		    return;
 		}
-		System.out.println("pk");  
 		
 		JsonFactory factory = new JsonFactory();
 
