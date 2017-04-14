@@ -137,6 +137,16 @@ public class FantasyOptimizer {
 		JsonNode rootArray = mapper.readTree(m_parser);
 		//System.out.println(rootArray);
 		JsonNode root = rootArray.path("data");
+		
+		
+		JsonGenerator generator = factory.createGenerator(new File(m_rankPath), JsonEncoding.UTF8);
+		
+		//Write the topmost '{'
+		generator.writeStartObject(); 
+		
+		generator.writeFieldName("pk");
+		generator.writeStartArray();
+		
 		for(JsonNode data : root){
 			JsonNode playerinfo = data.path("player_info");
 			int spread = data.path("spread").asInt();
@@ -145,14 +155,22 @@ public class FantasyOptimizer {
 			Player p1 = findPlayer(p1name);
 			Player p2 = findPlayer(p2name);
 			if(p1!=null&&p2!=null){
-				System.out.print(p1.m_displayName + ":" + p1.m_expected);
-				System.out.print("\tvs\t");
-				System.out.println(p2.m_displayName + ":" + p2.m_expected);
+				generator.writeStartObject();
+				generator.writeFieldName("player1");
+				outputPlayer(generator,p1);
+				generator.writeFieldName("player2");
+				outputPlayer(generator,p2);
 				
-				System.out.print("Recommended:" + (p1.m_expected+spread>p2.m_expected?p1.m_displayName:p2.m_displayName));
-				System.out.println("\tCertainty:"+Math.abs(p1.m_expected+spread-p2.m_expected));
+				generator.writeStringField("Recommended", (p1.m_expected+spread>p2.m_expected?p1.m_displayName:p2.m_displayName));
+
+				generator.writeNumberField("Certainty", Math.abs(p1.m_expected+spread-p2.m_expected));
+				generator.writeEndObject(); 
 			}
 		}
+		
+		generator.writeEndArray();
+		
+		generator.writeEndObject(); 
 	}
 	
 	private Player findPlayer(String name) throws Exception{
@@ -382,7 +400,7 @@ public class FantasyOptimizer {
 		generateLineupJson();
 	}
 
-	private void generateRankJson() throws IOException {
+	private void generateRankJson() throws Exception {
 		
 		JsonFactory factory = new JsonFactory();
 		JsonGenerator generator = factory.createGenerator(new File(m_rankPath), JsonEncoding.UTF8);
@@ -399,10 +417,7 @@ public class FantasyOptimizer {
 		generator.writeFieldName("pg");
 		generator.writeStartArray();
 		for(int i = 0;i<bound;i++){
-			generator.writeStartObject();
-			generator.writeStringField("name", m_pg.get(i).m_displayName);
-			generator.writeStringField("headImg", m_pg.get(i).m_headImg);
-			generator.writeEndObject();
+			outputPlayer(generator,m_pg.get(i));
 		}
 		generator.writeEndArray();
 		
@@ -411,10 +426,7 @@ public class FantasyOptimizer {
 		generator.writeFieldName("sg");
 		generator.writeStartArray();
 		for(int i = 0;i<bound;i++){
-			generator.writeStartObject();
-			generator.writeStringField("name", m_sg.get(i).m_displayName);
-			generator.writeStringField("headImg", m_sg.get(i).m_headImg);
-			generator.writeEndObject();
+			outputPlayer(generator,m_sg.get(i));
 		}
 		generator.writeEndArray();
 		
@@ -423,10 +435,7 @@ public class FantasyOptimizer {
 		generator.writeFieldName("sf");
 		generator.writeStartArray();
 		for(int i = 0;i<bound;i++){
-			generator.writeStartObject();
-			generator.writeStringField("name", m_sf.get(i).m_displayName);
-			generator.writeStringField("headImg", m_sf.get(i).m_headImg);
-			generator.writeEndObject();
+			outputPlayer(generator,m_sf.get(i));
 		}
 		generator.writeEndArray();
 		
@@ -435,10 +444,7 @@ public class FantasyOptimizer {
 		generator.writeFieldName("pf");
 		generator.writeStartArray();
 		for(int i = 0;i<bound;i++){
-			generator.writeStartObject();
-			generator.writeStringField("name", m_pf.get(i).m_displayName);
-			generator.writeStringField("headImg", m_pf.get(i).m_headImg);
-			generator.writeEndObject();
+			outputPlayer(generator,m_pf.get(i));
 		}
 		generator.writeEndArray();
 		
@@ -447,10 +453,7 @@ public class FantasyOptimizer {
 		generator.writeFieldName("c");
 		generator.writeStartArray();
 		for(int i = 0;i<bound;i++){
-			generator.writeStartObject();
-			generator.writeStringField("name", m_c.get(i).m_displayName);
-			generator.writeStringField("headImg", m_c.get(i).m_headImg);
-			generator.writeEndObject();
+			outputPlayer(generator,m_c.get(i));
 		}
 		generator.writeEndArray();
 		
@@ -482,38 +485,23 @@ public class FantasyOptimizer {
 			
 			Player pg = lineup.m_pg;
 			generator.writeFieldName("pg");
-			generator.writeStartObject();
-			generator.writeStringField("name", pg.m_displayName);
-			generator.writeStringField("headImg", pg.m_headImg);
-			generator.writeEndObject();
+			outputPlayer(generator,pg);
 			
 			Player sg = lineup.m_sg;
 			generator.writeFieldName("sg");
-			generator.writeStartObject();
-			generator.writeStringField("name", sg.m_displayName);
-			generator.writeStringField("headImg", sg.m_headImg);
-			generator.writeEndObject();
+			outputPlayer(generator,sg);
 			
 			Player sf = lineup.m_sf;
 			generator.writeFieldName("sf");
-			generator.writeStartObject();
-			generator.writeStringField("name", sf.m_displayName);
-			generator.writeStringField("headImg", sf.m_headImg);
-			generator.writeEndObject();
+			outputPlayer(generator,sf);
 			
 			Player pf = lineup.m_pf;
 			generator.writeFieldName("pf");
-			generator.writeStartObject();
-			generator.writeStringField("name", pf.m_displayName);
-			generator.writeStringField("headImg", pf.m_headImg);
-			generator.writeEndObject();
+			outputPlayer(generator,pf);
 			
 			Player c = lineup.m_c;
 			generator.writeFieldName("c");
-			generator.writeStartObject();
-			generator.writeStringField("name", c.m_displayName);
-			generator.writeStringField("headImg", c.m_headImg);
-			generator.writeEndObject();
+			outputPlayer(generator,c);
 			
 			generator.writeNumberField("total", lineup.score);
 			
@@ -539,5 +527,12 @@ public class FantasyOptimizer {
 	
 	public static String getAllpath() {
 		return m_allPath;
+	}
+	
+	private void outputPlayer(JsonGenerator generator, Player p) throws Exception{
+		generator.writeStartObject();
+		generator.writeStringField("name", p.m_displayName);
+		generator.writeStringField("headImg", p.m_headImg);
+		generator.writeEndObject();
 	}
 }
