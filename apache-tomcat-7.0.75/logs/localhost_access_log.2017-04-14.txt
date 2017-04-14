@@ -5,3 +5,7 @@
 0:0:0:0:0:0:0:1 - - [14/Apr/2017:01:38:01 -0700] "GET /FantasyServer/pk HTTP/1.1" 200 1969
 0:0:0:0:0:0:0:1 - - [14/Apr/2017:01:38:07 -0700] "GET /FantasyServer/rank HTTP/1.1" 200 6206
 0:0:0:0:0:0:0:1 - - [14/Apr/2017:01:38:34 -0700] "GET /FantasyServer/all HTTP/1.1" 404 -
+0:0:0:0:0:0:0:1 - - [14/Apr/2017:12:58:25 -0700] "GET /FantasyServer/optimize HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [14/Apr/2017:12:59:55 -0700] "GET /FantasyServer/rank HTTP/1.1" 200 6206
+0:0:0:0:0:0:0:1 - - [14/Apr/2017:13:00:00 -0700] "GET /FantasyServer/lineup HTTP/1.1" 404 -
+0:0:0:0:0:0:0:1 - - [14/Apr/2017:13:00:05 -0700] "GET /FantasyServer/all HTTP/1.1" 404 -

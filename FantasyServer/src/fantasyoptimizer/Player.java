@@ -19,7 +19,7 @@ public class Player {
 	
 	public Player(String name, String en_name, double average,double l10average, int injury, int salary, int id, double ability, ArrayList<Double> opponentScores, String headImg){
 		m_playerName = name;
-		m_displayName = en_name;
+		m_displayName = name;
 		m_enName = en_name;
 		m_average = average;
 		m_latest10average = l10average;
