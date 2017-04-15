@@ -74,7 +74,7 @@ public class RestFantasy {
 	@Path("optimize")
 	public Response optimize() throws Exception {
 		FantasyOptimizer fo = new FantasyOptimizer();
-		String id = "3569";
+		String id = fo.getId();
 		fo.getPlayer(id);
 		fo.optimize();
 		fo.pk();

@@ -2636,3 +2636,222 @@ INFO: Starting ProtocolHandler ["http-bio-8081"]
 INFO: Starting ProtocolHandler ["ajp-bio-8010"]
 四月 14, 2017 6:44:41 下午 org.apache.catalina.startup.Catalina start
 INFO: Server startup in 2262 ms
+四月 14, 2017 8:36:00 下午 org.apache.catalina.startup.HostConfig undeploy
+INFO: Undeploying context [/FantasyServer]
+四月 14, 2017 8:36:00 下午 org.apache.catalina.loader.WebappClassLoaderBase openJARs
+WARNING: Failed to open JAR [null]
+java.io.FileNotFoundException: D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\FantasyServer\WEB-INF\lib\jackson-annotations-2.6.2.jar (The system cannot find the path specified)
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(Unknown Source)
+	at java.util.zip.ZipFile.<init>(Unknown Source)
+	at java.util.jar.JarFile.<init>(Unknown Source)
+	at java.util.jar.JarFile.<init>(Unknown Source)
+	at org.apache.catalina.loader.WebappClassLoaderBase.openJARs(WebappClassLoaderBase.java:3108)
+	at org.apache.catalina.loader.WebappClassLoaderBase.findResourceInternal(WebappClassLoaderBase.java:3397)
+	at org.apache.catalina.loader.WebappClassLoaderBase.findResource(WebappClassLoaderBase.java:1458)
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResourceAsStream(WebappClassLoaderBase.java:1686)
+	at org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc(WebappClassLoaderBase.java:2282)
+	at org.apache.catalina.loader.WebappClassLoaderBase.clearReferences(WebappClassLoaderBase.java:2223)
+	at org.apache.catalina.loader.WebappClassLoaderBase.stop(WebappClassLoaderBase.java:2123)
+	at org.apache.catalina.loader.WebappLoader.stopInternal(WebappLoader.java:663)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5872)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:1019)
+	at org.apache.catalina.startup.HostConfig.undeploy(HostConfig.java:1562)
+	at org.apache.catalina.startup.HostConfig.checkResources(HostConfig.java:1488)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1748)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:333)
+	at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1370)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1542)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1552)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1520)
+	at java.lang.Thread.run(Unknown Source)
+
+四月 14, 2017 8:37:40 下午 org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\FantasyServer.war
+四月 14, 2017 8:37:41 下午 org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+四月 14, 2017 8:37:41 下午 com.sun.jersey.api.core.servlet.WebAppResourceConfig init
+INFO: Scanning for root resource and provider classes in the Web app resource paths:
+  /WEB-INF/lib
+  /WEB-INF/classes
+四月 14, 2017 8:37:41 下午 com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class restapi.RestFantasy
+四月 14, 2017 8:37:41 下午 com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+四月 14, 2017 8:37:41 下午 com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.19.1 03/11/2016 02:42 PM'
+四月 14, 2017 8:37:42 下午 org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\FantasyServer.war has finished in 1,591 ms
+四月 14, 2017 8:38:54 下午 org.apache.catalina.startup.Catalina stopServer
+SEVERE: Could not contact localhost:8006. Tomcat may not be running.
+四月 14, 2017 8:38:54 下午 org.apache.catalina.startup.Catalina stopServer
+SEVERE: Catalina.stop: 
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at java.net.Socket.<init>(Unknown Source)
+	at org.apache.catalina.startup.Catalina.stopServer(Catalina.java:498)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.catalina.startup.Bootstrap.stopServer(Bootstrap.java:343)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:430)
+
+四月 14, 2017 8:39:04 下午 org.apache.catalina.core.AprLifecycleListener init
+WARNING: The APR based Apache Tomcat Native library failed to load. The error reported was [D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\bin\tcnative-1.dll: Can't load AMD 64-bit .dll on a IA 32-bit platform]
+java.lang.UnsatisfiedLinkError: D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\bin\tcnative-1.dll: Can't load AMD 64-bit .dll on a IA 32-bit platform
+	at java.lang.ClassLoader$NativeLibrary.load(Native Method)
+	at java.lang.ClassLoader.loadLibrary0(Unknown Source)
+	at java.lang.ClassLoader.loadLibrary(Unknown Source)
+	at java.lang.Runtime.loadLibrary0(Unknown Source)
+	at java.lang.System.loadLibrary(Unknown Source)
+	at org.apache.tomcat.jni.Library.<init>(Library.java:42)
+	at org.apache.tomcat.jni.Library.initialize(Library.java:178)
+	at org.apache.catalina.core.AprLifecycleListener.init(AprLifecycleListener.java:200)
+	at org.apache.catalina.core.AprLifecycleListener.isAprAvailable(AprLifecycleListener.java:108)
+	at org.apache.catalina.connector.Connector.setProtocol(Connector.java:592)
+	at org.apache.catalina.connector.Connector.<init>(Connector.java:66)
+	at org.apache.catalina.startup.ConnectorCreateRule.begin(ConnectorCreateRule.java:62)
+	at org.apache.tomcat.util.digester.Digester.startElement(Digester.java:1303)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1576)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:616)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:667)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:253)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:427)
+
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server version:        Apache Tomcat/7.0.75
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server built:          Jan 18 2017 20:54:42 UTC
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Server number:         7.0.75.0
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Name:               Windows 10
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: OS Version:            10.0
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Architecture:          x86
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Java Home:             C:\Program Files (x86)\Java\jre1.8.0_121
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Version:           1.8.0_121-b13
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: JVM Vendor:            Oracle Corporation
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_BASE:         D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: CATALINA_HOME:         D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.config.file=D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\conf\logging.properties
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.endorsed.dirs=D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\endorsed
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.base=D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Dcatalina.home=D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75
+四月 14, 2017 8:39:04 下午 org.apache.catalina.startup.VersionLoggerListener log
+INFO: Command line argument: -Djava.io.tmpdir=D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\temp
+四月 14, 2017 8:39:05 下午 org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8081"]
+四月 14, 2017 8:39:05 下午 org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8010"]
+四月 14, 2017 8:39:05 下午 org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1101 ms
+四月 14, 2017 8:39:05 下午 org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+四月 14, 2017 8:39:05 下午 org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.75
+四月 14, 2017 8:39:05 下午 org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\FantasyServer.war
+四月 14, 2017 8:39:06 下午 org.apache.catalina.startup.TldConfig execute
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+四月 14, 2017 8:39:06 下午 org.apache.catalina.util.SessionIdGeneratorBase createSecureRandom
+INFO: Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [171] milliseconds.
+四月 14, 2017 8:39:06 下午 com.sun.jersey.api.core.servlet.WebAppResourceConfig init
+INFO: Scanning for root resource and provider classes in the Web app resource paths:
+  /WEB-INF/lib
+  /WEB-INF/classes
+四月 14, 2017 8:39:06 下午 com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class restapi.RestFantasy
+四月 14, 2017 8:39:06 下午 com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+四月 14, 2017 8:39:07 下午 com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.19.1 03/11/2016 02:42 PM'
+四月 14, 2017 8:39:07 下午 org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\FantasyServer.war has finished in 2,221 ms
+四月 14, 2017 8:39:07 下午 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\docs
+四月 14, 2017 8:39:07 下午 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\docs has finished in 66 ms
+四月 14, 2017 8:39:07 下午 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\examples
+四月 14, 2017 8:39:08 下午 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\examples has finished in 1,063 ms
+四月 14, 2017 8:39:08 下午 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\host-manager
+四月 14, 2017 8:39:08 下午 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\host-manager has finished in 81 ms
+四月 14, 2017 8:39:08 下午 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\manager
+四月 14, 2017 8:39:08 下午 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\manager has finished in 69 ms
+四月 14, 2017 8:39:08 下午 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\ROOT
+四月 14, 2017 8:39:08 下午 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\ROOT has finished in 54 ms
+四月 14, 2017 8:39:08 下午 org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8081"]
+四月 14, 2017 8:39:08 下午 org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8010"]
+四月 14, 2017 8:39:08 下午 org.apache.catalina.startup.Catalina start
+INFO: Server startup in 3639 ms
+四月 14, 2017 8:40:58 下午 org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+四月 14, 2017 8:40:58 下午 org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8081"]
+四月 14, 2017 8:40:58 下午 org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8010"]
+四月 14, 2017 8:40:58 下午 org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+四月 14, 2017 8:40:58 下午 org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8081"]
+四月 14, 2017 8:40:58 下午 org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8010"]
+四月 14, 2017 8:40:58 下午 org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8081"]
+四月 14, 2017 8:40:58 下午 org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8010"]
