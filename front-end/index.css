@@ -155,6 +155,6 @@ div.player-img {
   border-bottom: 1px solid #eee;
 }
 
-.pk-table .last-row {
+.pk-table .last-row td{
   border-bottom: none !important;
 }
