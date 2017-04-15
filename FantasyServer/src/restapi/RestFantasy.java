@@ -31,7 +31,7 @@ import fantasyoptimizer.FantasyOptimizer;
 public class RestFantasy {
 	
 	@GET
-	@Path("/all")
+	@Path("all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAll() throws IOException {
 		
@@ -41,7 +41,7 @@ public class RestFantasy {
 	}
 	
 	@GET
-	@Path("/rank")
+	@Path("rank")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getRank() throws IOException {
 		
@@ -52,7 +52,7 @@ public class RestFantasy {
 
 	// This method is called if XML is request
 	@GET
-	@Path("/lineup")
+	@Path("lineup")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getLineup() throws IOException {
 		ResponseBuilder response = getraw(FantasyOptimizer.getLineuppath());
@@ -62,7 +62,7 @@ public class RestFantasy {
 
 	// This method is called if HTML is request
 	@GET
-	@Path("/pk")
+	@Path("pk")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPk() throws IOException {
 		ResponseBuilder response = getraw(FantasyOptimizer.getPkpath());
@@ -71,7 +71,7 @@ public class RestFantasy {
 	}
 	
 	@GET
-	@Path("/optimize")
+	@Path("optimize")
 	public Response optimize() throws Exception {
 		FantasyOptimizer fo = new FantasyOptimizer();
 		String id = "3569";

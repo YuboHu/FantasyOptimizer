@@ -2036,3 +2036,13 @@ INFO: Starting ProtocolHandler ["http-bio-8081"]
 INFO: Starting ProtocolHandler ["ajp-bio-8010"]
 四月 14, 2017 5:51:30 下午 org.apache.catalina.startup.Catalina start
 INFO: Server startup in 2192 ms
+四月 14, 2017 6:42:54 下午 org.apache.catalina.startup.HostConfig undeploy
+INFO: Undeploying context [/FantasyServer]
+四月 14, 2017 6:42:54 下午 org.apache.catalina.startup.ExpandWar deleteDir
+SEVERE: [D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\FantasyServer] could not be completely deleted. The presence of the remaining files may cause problems
+四月 14, 2017 6:42:54 下午 org.apache.catalina.startup.ExpandWar delete
+SEVERE: [D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\FantasyServer] could not be completely deleted. The presence of the remaining files may cause problems
+四月 14, 2017 6:42:54 下午 org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\FantasyServer.war
+四月 14, 2017 6:42:54 下午 org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive D:\Workspace\FantasyOptimizer\apache-tomcat-7.0.75\webapps\FantasyServer.war has finished in 80 ms
