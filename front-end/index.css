@@ -141,4 +141,15 @@ div.player-img {
   padding: 5px;
   font-weight: normal;
   color: #888;
+  padding-top: 10px;
+}
+
+.pk-table .vs {
+  color: #ccc;
+}
+
+.pk-table .recommend, .pk-table .certainty {
+  font-size: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
 }

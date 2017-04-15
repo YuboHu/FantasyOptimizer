@@ -4,10 +4,13 @@
     <title>Fantasy Optimizer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
+
     <script src="jquery-3.1.1.min.js"></script>
     <script src="jsrender.min.js"></script>
+
     <script id="player-info-tmp" type="text/x-jsrender">
       <div class="img-bg-pair">
         <div class="player-img">
@@ -19,6 +22,7 @@
         {{:name}}
       </div>
     </script>
+
     <script id="lineup-player-info-tmp" type="text/x-jsrender">
       <div class="img-bg-pair">
         <div class="player-img">
@@ -31,6 +35,7 @@
         <br>{{:name}}
       </div>
     </script>
+
     <script id="pk-tmp" type="text/x-jsrender">
       <tr id="pk-{{:index}}-0">
         <td colspan="2">
@@ -42,13 +47,13 @@
           </div>
         </td>
         <td colspan="2">
-          <div class="player-name">{{:name0}}</div>
+          <div class="player-name" id="pk-{{:index}}-name-0">{{:name0}}</div>
         </td>
-        <td colspan="2">
+        <td colspan="2" class="vs">
           VS
         </td>
         <td colspan="2">
-          <div class="player-name">{{:name1}}</div>
+          <div class="player-name" id="pk-{{:index}}-name-1">{{:name1}}</div>
         </td>
         <td colspan="2">
           <div class="img-bg-pair">
@@ -68,7 +73,7 @@
         </td>
       </tr>
     </script>
-    <script src="data.js"></script>
+
     <script src="index.js"></script>
   </head>
 

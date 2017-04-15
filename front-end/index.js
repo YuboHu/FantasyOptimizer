@@ -107,7 +107,9 @@ window.onload = function () {
         'expect': data.pk[i].Certainty.toFixed(2)
       }]));
       $('#pk-'+i+'-img-0')[0].style.backgroundImage = 'url('+data.pk[i].player1.headImg+')';
+      $('#pk-'+i+'-name-0').width(window.innerWidth*0.20-10);
       $('#pk-'+i+'-img-1')[0].style.backgroundImage = 'url('+data.pk[i].player2.headImg+')';
+      $('#pk-'+i+'-name-1').width(window.innerWidth*0.20-10);
     }
   });
 }
