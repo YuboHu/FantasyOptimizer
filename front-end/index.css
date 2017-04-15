@@ -36,6 +36,8 @@ ul.nav > li.active{
   border-bottom: 2px solid #AE1000;
 }
 
+/*------ rank ------*/
+
 .price-performance-table {
   font-size: 15px;
   width: 100%;
@@ -62,6 +64,8 @@ ul.nav > li.active{
   width: 10% !important;
   border-left: none !important;
 }
+
+/*------ player-info ------*/
 
 div.player-name {
   width: 100%;
@@ -93,4 +97,33 @@ div.player-img {
   background-size: auto 65px;
   border-radius: 25px;
   background-position: 50% 20%;
+}
+
+/*------ lineup ------*/
+
+.lineup-table {
+  font-size: 15px;
+  width: 100%;
+}
+
+.lineup-table > tbody > tr > td {
+  width: 20%;
+  text-align: center;
+  padding: 5px;
+  font-weight: normal;
+  color: #888;
+}
+
+.lineup-table > tbody > tr.lineupX-title {
+  border-top: 1px solid #eee;
+  font-size: 12px;
+}
+
+.lineup-table > tbody > tr.first-row {
+  border-top: none !important;
+}
+
+.lineup-table > tbody > tr.lineupX-players > td{
+  padding-top: 8px;
+  padding-bottom: 10px;
 }
