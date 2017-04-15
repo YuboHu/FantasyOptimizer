@@ -1,6 +1,8 @@
+var serverURL = 'http://52.25.159.155:8081/FantasyServer';
+
 window.onload = function () {
   $.ajax({
-    url: 'http://192.168.0.10:8081/FantasyServer/rank',
+    url: serverURL+'/rank',
     method: 'GET',
     dataType: 'json'
   }).done(function (data) {
@@ -32,7 +34,7 @@ window.onload = function () {
   });
 
   $.ajax({
-    url: 'http://192.168.0.10:8081/FantasyServer/lineup',
+    url: serverURL+'/lineup',
     method: 'GET',
     dataType: 'json'
   }).done(function (data) {
@@ -87,6 +89,25 @@ window.onload = function () {
       $('#lineup-'+i+'-c').append($('#lineup-player-info-tmp').render([{'position':'C','name':data.lineup[i].c.name}]));
       $('#lineup-'+i+'-c > .player-name').width(window.innerWidth*0.20-10);
       $('#lineup-'+i+'-c > .img-bg-pair > .player-img')[0].style.backgroundImage = 'url('+data.lineup[i].c.headImg+')';
+    }
+  });
+
+  $.ajax({
+    url: serverURL+'/pk',
+    method: 'GET',
+    dataType: 'json'
+  }).done(function (data) {
+    var i;
+    for(i=0; i<data.pk.length; i++) {
+      $('.pk-table > tbody').append($('#pk-tmp').render([{
+        'index': i,
+        'name0': data.pk[i].player1.name,
+        'name1': data.pk[i].player2.name,
+        'nameRec': data.pk[i].Recommended,
+        'expect': data.pk[i].Certainty.toFixed(2)
+      }]));
+      $('#pk-'+i+'-img-0')[0].style.backgroundImage = 'url('+data.pk[i].player1.headImg+')';
+      $('#pk-'+i+'-img-1')[0].style.backgroundImage = 'url('+data.pk[i].player2.headImg+')';
     }
   });
 }

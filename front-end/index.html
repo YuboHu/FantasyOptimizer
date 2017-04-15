@@ -31,6 +31,43 @@
         <br>{{:name}}
       </div>
     </script>
+    <script id="pk-tmp" type="text/x-jsrender">
+      <tr id="pk-{{:index}}-0">
+        <td colspan="2">
+          <div class="img-bg-pair">
+            <div class="player-img" id="pk-{{:index}}-img-0">
+            </div>
+            <div class="player-img-bg">
+            </div>
+          </div>
+        </td>
+        <td colspan="2">
+          <div class="player-name">{{:name0}}</div>
+        </td>
+        <td colspan="2">
+          VS
+        </td>
+        <td colspan="2">
+          <div class="player-name">{{:name1}}</div>
+        </td>
+        <td colspan="2">
+          <div class="img-bg-pair">
+            <div class="player-img" id="pk-{{:index}}-img-1">
+            </div>
+            <div class="player-img-bg">
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr id="pk-{{:index}}-1">
+        <td colspan="5" class="recommend">
+          推荐：{{:nameRec}}
+        </td>
+        <td colspan="5" class="certainty">
+          预期胜分：{{:expect}}
+        </td>
+      </tr>
+    </script>
     <script src="data.js"></script>
     <script src="index.js"></script>
   </head>
@@ -150,7 +187,8 @@
     </div>
 
     <div class="tab-content" id="pk-content" style="display: none;">
-      pk
+      <table class="pk-table"><tbody>
+      </tbody></table>
     </div>
   </body>
 </html>
