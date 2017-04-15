@@ -19,6 +19,18 @@
         {{:name}}
       </div>
     </script>
+    <script id="lineup-player-info-tmp" type="text/x-jsrender">
+      <div class="img-bg-pair">
+        <div class="player-img">
+        </div>
+        <div class="player-img-bg">
+        </div>
+      </div>
+      <div class="player-name">
+        {{:position}}
+        <br>{{:name}}
+      </div>
+    </script>
     <script src="data.js"></script>
     <script src="index.js"></script>
   </head>
@@ -133,7 +145,8 @@
     </div>
 
     <div class="tab-content" id="lineup-content" style="display: none;">
-      lineup
+      <table class="lineup-table"><tbody>
+      </tbody></table>
     </div>
 
     <div class="tab-content" id="pk-content" style="display: none;">
