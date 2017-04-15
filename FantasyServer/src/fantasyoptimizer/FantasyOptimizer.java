@@ -1,18 +1,18 @@
 package fantasyoptimizer;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
-import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonFactory;
@@ -554,11 +554,12 @@ public class FantasyOptimizer {
 		JsonParser pk_parser = factory.createParser(pk);
 		ObjectMapper mapper = new ObjectMapper();
 
+		mapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
 		JsonNode rankRoot = mapper.readTree(rank_parser);
 		JsonNode lineupRoot = mapper.readTree(lineup_parser);
 		JsonNode pkRoot = mapper.readTree(pk_parser);
 		
-		ObjectNode rootNode = mapper.createObjectNode();
+		ObjectNode rootNode =  mapper.getNodeFactory().objectNode();
 		
 		rootNode.setAll((ObjectNode)rankRoot);
 		rootNode.setAll((ObjectNode)lineupRoot);
@@ -566,8 +567,10 @@ public class FantasyOptimizer {
 
 		String allJson = rootNode.toString();
 		
-		PrintWriter out = new PrintWriter(m_allPath);
-		out.println(allJson);
+		//PrintWriter out = new PrintWriter(m_allPath);
+		Writer out = new BufferedWriter(new OutputStreamWriter(
+			    new FileOutputStream(m_allPath), "UTF-8"));
+		out.write(allJson);
 		out.close();
 	}
 	
@@ -576,7 +579,8 @@ public class FantasyOptimizer {
 		if (!yourFile.exists()) {
 			return null;
 		}
-		BufferedReader reader = new BufferedReader(new FileReader(path));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+                new FileInputStream(path), "UTF8"));
 		String line = null;
 		StringBuilder stringBuilder = new StringBuilder();
 		String ls = System.getProperty("line.separator");
