@@ -154,3 +154,7 @@ div.player-img {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
+
+.pk-table .last-row {
+  border-bottom: none !important;
+}
