@@ -259,11 +259,12 @@ public class FantasyOptimizer {
 			String hometeam = root.path("home_team").asText();
 			String awayteam = root.path("away_team").asText();
 			String opponent = team.equals(hometeam) ? awayteam : hometeam;
-			getPlayerDetail(id,average,name,injury,salary,position,opponent,headImg);
+			boolean isHome = team.equals(hometeam) ? true : false;
+			getPlayerDetail(id,average,name,injury,salary,position,opponent,headImg,isHome);
 		}
 	}
 	
-	private void getPlayerDetail(int id,double average,String name,int injury,int salary,int position,String opponent, String headImg) throws Exception {
+	private void getPlayerDetail(int id,double average,String name,int injury,int salary,int position,String opponent, String headImg, boolean isHome) throws Exception {
 		URL object = new URL(m_detailBaseUrl+id);
 
 		HttpURLConnection con = (HttpURLConnection) object.openConnection();
@@ -301,17 +302,34 @@ public class FantasyOptimizer {
 		Double lastten = playerinfo.path("stats").path("last_ten_fantasy_score").asDouble();
 		
 		ArrayList<Double> opponentScores = new ArrayList<Double>();
-		
+		int[] last10playTime = new int[10];
+		double homeAverage = 0.0;
+		int homeCount = 0;
+		double awayAverage = 0.0;
+		int awayCount = 0;
+		int i = 0;
 		for(JsonNode performance : rootArray.path("data").path("last_ten_performance")){
+			if(i<10){
+				last10playTime[i++] = performance.path("play_time").asInt();
+			}
 			if(performance.path("play_time").asInt()==0){
 				continue;
 			}
 			else if(performance.path("home_team").asText().equals(opponent)||performance.path("away_team").asText().equals(opponent)){
 				opponentScores.add(performance.path("fantasy_score").asDouble());
 			}
+			if(performance.path("home_team").asText().equals(performance.path("team").asText())){
+				homeCount++;
+				homeAverage += performance.path("fantasy_score").asDouble();
+			}
+			else if(performance.path("away_team").asText().equals(performance.path("team").asText())){
+				awayCount++;
+				awayAverage += performance.path("fantasy_score").asDouble();
+			}
 		}
-		
-		Player player = new Player(name,en_name,average,lastten,injury,salary, id, ability,opponentScores,headImg);
+		homeAverage /= homeCount;
+		awayAverage /= awayCount;
+		Player player = new Player(name,en_name,average,lastten,injury,salary, id, ability,opponentScores,headImg,homeAverage,awayAverage,isHome,last10playTime);
 		
 		switch(position){
 			case 1: m_pg.add(player);break;
