@@ -29,6 +29,9 @@ public class FantasyOptimizer {
 	private static final String m_allPath = m_dir+ "/all.json";
 	private static final String m_rankPath = m_dir+ "/rank.json";
 	private static final String m_lineupPath = m_dir + "/lineup.json";
+	private static final String m_140lineupPath = m_dir + "/140.json";
+	private static final String m_100lineupPath = m_dir + "/100.json";
+	private static final String m_80lineupPath = m_dir + "/80.json";
 	private static final String m_pkPath = m_dir + "/pk.json";
 
 	private static final String m_listBaseUrl = "https://fantasy.hupu.com/api/player/candidates/";
@@ -43,7 +46,9 @@ public class FantasyOptimizer {
 	private ArrayList<Player> m_pf;
 	private ArrayList<Player> m_c;
 	private ArrayList<Lineup> m_lineup;
-	
+	private ArrayList<Lineup> m_140lineup;
+	private ArrayList<Lineup> m_100lineup;
+	private ArrayList<Lineup> m_80lineup;
 	//private ArrayList<Player> m_injury;
 	
 	public FantasyOptimizer(){
@@ -53,6 +58,9 @@ public class FantasyOptimizer {
 		m_pf = new ArrayList<Player>();
 		m_c = new ArrayList<Player>();
 		m_lineup = new ArrayList<Lineup>();
+		m_140lineup = new ArrayList<Lineup>();
+		m_100lineup = new ArrayList<Lineup>();
+		m_80lineup = new ArrayList<Lineup>();
 	}
 	
 	public static void main(String[] in_args) throws Exception {
@@ -356,7 +364,20 @@ public class FantasyOptimizer {
 
 		generateRankJson();
 		
-		int baseline = 105;
+		generateLineup(120);
+		generateLineup(140);
+		generateLineup(100);
+		generateLineup(80);
+		
+		generateLineupJson(m_lineupPath,m_lineup);
+		generateLineupJson(m_140lineupPath,m_140lineup);
+		generateLineupJson(m_100lineupPath,m_100lineup);
+		generateLineupJson(m_80lineupPath,m_80lineup);
+	}
+
+	private void generateLineup(int total){
+		int baseline = total-15;
+		ArrayList<Lineup> lineups= new ArrayList<Lineup>();
 		for(int pg=0; pg < m_pg.size() ;pg++){
 			Player p = m_pg.get(pg);
 			if(p.m_injury!=2){
@@ -369,7 +390,7 @@ public class FantasyOptimizer {
 				}
 				
 				for(int sf=0; sf < m_sf.size() ;sf++){
-					int left = 120 - p.m_salary - p2.m_salary;
+					int left = total - p.m_salary - p2.m_salary;
 					if(left<15){
 						break;
 					}
@@ -379,7 +400,7 @@ public class FantasyOptimizer {
 					}
 					
 					for(int pf=0; pf < m_pf.size() ;pf++){
-						left = 120 - p.m_salary - p2.m_salary - p3.m_salary;
+						left = total - p.m_salary - p2.m_salary - p3.m_salary;
 						double score = p.m_expected + p2.m_expected + p3.m_expected;
 						if(left<10||score<10){
 							break;
@@ -390,7 +411,7 @@ public class FantasyOptimizer {
 						}
 						
 						for(int c=0; c < m_c.size() ;c++){
-							left = 120 - p.m_salary - p2.m_salary - p3.m_salary - p4.m_salary;
+							left = total - p.m_salary - p2.m_salary - p3.m_salary - p4.m_salary;
 							score = p.m_expected + p2.m_expected + p3.m_expected + p4.m_expected;
 							if(left<5||score<50){
 								break;
@@ -403,7 +424,7 @@ public class FantasyOptimizer {
 							Lineup lu = new Lineup(p,p2,p3,p4,p5);
 							
 							if(lu.score>baseline){
-								m_lineup.add(lu);
+								lineups.add(lu);
 							}
 							else{
 								lu = null;
@@ -411,7 +432,6 @@ public class FantasyOptimizer {
 						}
 					}
 				}
-				
 			}
 		}
 		Comparator<Lineup> cpl = new Comparator<Lineup>() {
@@ -419,10 +439,24 @@ public class FantasyOptimizer {
                 return l1.score > l2.score ? -1 : l1.score == l2.score ? 0 : 1;
             }
         };
-		Collections.sort(m_lineup, cpl);
-		generateLineupJson();
+		Collections.sort(lineups, cpl);
+		switch(total){
+			case 120:
+				m_lineup = lineups;
+				break;
+			case 140:
+				m_140lineup = lineups;
+				break;
+			case 100:
+				m_100lineup = lineups;
+				break;
+			case 80:
+				m_80lineup = lineups;
+				break;
+		}
+			
 	}
-
+	
 	private void generateRankJson() throws Exception {
 		
 		JsonFactory factory = new JsonFactory();
@@ -489,11 +523,11 @@ public class FantasyOptimizer {
 		generator.close();
 	}
 	
-	private void generateLineupJson() throws Exception{
-		int bound = m_lineup.size() > 20 ? 20 : m_lineup.size();
+	private void generateLineupJson(String outputPath, ArrayList<Lineup> lineups) throws Exception{
+		int bound = lineups.size() > 20 ? 20 : lineups.size();
 		
 		JsonFactory factory = new JsonFactory();
-		JsonGenerator generator = factory.createGenerator(new File(m_lineupPath), JsonEncoding.UTF8);
+		JsonGenerator generator = factory.createGenerator(new File(outputPath), JsonEncoding.UTF8);
 		
 		//Write the topmost '{'
 		generator.writeStartObject(); 
@@ -503,7 +537,7 @@ public class FantasyOptimizer {
 		
 		
 		for(int l=0;l<bound;l++){
-			Lineup lineup = m_lineup.get(l);
+			Lineup lineup = lineups.get(l);
 			generator.writeStartObject();
 			
 			Player pg = lineup.m_pg;
@@ -543,6 +577,18 @@ public class FantasyOptimizer {
 
 	public static String getLineuppath() {
 		return m_lineupPath;
+	}
+	
+	public static String get140Lineuppath() {
+		return m_140lineupPath;
+	}
+	
+	public static String get100Lineuppath() {
+		return m_100lineupPath;
+	}
+	
+	public static String get80Lineuppath() {
+		return m_80lineupPath;
 	}
 
 	public static String getPkpath() {

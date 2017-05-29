@@ -60,6 +60,32 @@ public class RestFantasy {
 		return response.build();
 	}
 
+	@GET
+	@Path("140")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response get140Lineup() throws IOException {
+		ResponseBuilder response = getraw(FantasyOptimizer.get140Lineuppath());
+		response.header("Access-Control-Allow-Origin", "*");
+		return response.build();
+	}
+	@GET
+	@Path("100")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response get100Lineup() throws IOException {
+		ResponseBuilder response = getraw(FantasyOptimizer.get100Lineuppath());
+		response.header("Access-Control-Allow-Origin", "*");
+		return response.build();
+	}
+	
+	@GET
+	@Path("80")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response get80Lineup() throws IOException {
+		ResponseBuilder response = getraw(FantasyOptimizer.get80Lineuppath());
+		response.header("Access-Control-Allow-Origin", "*");
+		return response.build();
+	}
+	
 	// This method is called if HTML is request
 	@GET
 	@Path("pk")
